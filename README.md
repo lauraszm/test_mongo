@@ -1,10 +1,10 @@
-### READ ME ### DOCUMENTACION ###
+# DOCUMENTACION
 
 ===== USUARIOS =====
 
-### Registro de nuevo usuario ###
+## Registro de nuevo usuario
 
-# Request #
+## Request 
 POST: http://localhost:3000/users/registro
 Body:
 {
@@ -13,17 +13,17 @@ Body:
     "password":"password_here"
 }
 
-# Response #
+## Response
 {
     "_id": "1a234567e8iou90ae123io45",
     "name": "nombre",
     "user": "user",
-    "password": "$2b$10$ZOfZaf6Zef57Vwu0BXMNi.sg.DJ9jmhy1hG9MmGBCglPS3RuuIowp",
+    "password": "******",
     "__v": 0
 }
 
-### Login de usuario existente ###
-Request:
+## Login de usuario existente
+### Request:
 POST: http://localhost:3000/users/login
 Body:
 {
@@ -31,20 +31,20 @@ Body:
     "password":"password_here"
 }
 
-# Response #
+### Response
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eiwiaWF0IjoxNTk1OTY5ODQ0LCJleHAiOjE1OTU5NzM0NDR9yJ1c3VhcmlvIjoiNWYxZTAwZWI0Y2NhM2IxYmVjYjMzOTQ2I.FCLLhgVEjlXXPMCgxDpwtIZUIMzmBdTKXweud5ON3K3"
+    "token": "******"
 }
 
 Guardar el token en un sitio seguro, va a ser necesario para algunos endpoints de productos
 
 ===== PRODUCTOS =====
 
-### Solicitar la lista completa de productos ###
-# Request #
+## Solicitar la lista completa de productos
+### Request
 GET: http://localhost:3000/productos/
 
-# Response #
+#### Response
 [
     {
         "_id": "5f1cbecad369a3adff42bd72",
@@ -71,16 +71,16 @@ GET: http://localhost:3000/productos/
 
 IMPORTANTE: El servicio incluye un paginado de 4 productos por pagina
 
-### Solicitar un producto especifico ###
+## Solicitar un producto especifico
 Se necesita un access token (usuario logueado)
 
-# Request #
+### Request
 GET http://localhost:3000/productos/[PRODUCTO-ID]
 Headers: {
     x-access-token: [token-del-login]
 }
 
-# Response #
+### Response
 {
     "_id": "[PRODUCTO-ID]",
     "titulo": "Bici Plegable Electrica",
@@ -95,8 +95,8 @@ Headers: {
 
 En caso de que la ID de producto sea inexistente, la respuesta sera "null"
 
-### Crear un producto nuevo ###
-# Request #
+## Crear un producto nuevo
+### Request
 POST: http://localhost:3000/productos/
 Headers: {
     x-access-token: [token-del-login]
@@ -114,7 +114,7 @@ Body:
   }
 
 
-# Response #
+### Response
 {
     "_id": "5f209da3b7649336c0890071",
     "titulo": "CRUISER BIKE",
@@ -127,9 +127,9 @@ Body:
     "__v": 0
 }
 
-### Modificar un producto existente ###
+## Modificar un producto existente
 
-# Request #
+### Request
 PUT: http://localhost:3000/productos/[Id-del-producto]
 Headers: {
     x-access-token: [token-del-login]
@@ -146,21 +146,21 @@ Body:
     "titulo": "Cruiser Bike"
   }
 
-# Response #
+### Response
 {
     "n": 1,
     "nModified": 1,
     "ok": 1
 }
 
-### Eliminar un producto existente ###
-# Request #
+## Eliminar un producto existente ###
+### Request
 DELETE: http://localhost:3000/productos/[Id-del-producto]
 Headers: {
     x-access-token: [token-del-login]
 }
 
-# Response #
+### Response
 {
     "n": 1,
     "ok": 1,
